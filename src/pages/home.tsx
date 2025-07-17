@@ -281,7 +281,7 @@ export default function Home() {
             </AnimatedSection>
 
             {/* What We Do */}
-            <AnimatedSection delay={1400} index={6}>
+            <AnimatedSection delay={140} index={6}>
               <div className="bg-gradient-to-br from-[#F4F4F4] to-[#FFFFFF] p-6 lg:p-8 rounded-2xl border border-gray-200 card-hover backdrop-blur-sm">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">
                   AI-Powered Media Verification
@@ -327,37 +327,37 @@ export default function Home() {
                   title: "Deepfake Detection",
                   description:
                     "Analyze image, video, and audio content for AI-generated manipulations using CNN and Whisper-based models.",
-                  delay: 400,
+                  delay: 40,
                 },
                 {
                   title: "Cheapfake/Shallowfake Detection",
                   description:
                     "Detect basic edits, such as speed changes, splicing, or cropping, using OpenCV and FFmpeg.",
-                  delay: 600,
+                  delay: 60,
                 },
                 {
                   title: "Metadata & Geolocation Analysis",
                   description:
                     "Reveal hidden metadata and map geolocation to verify context and source.",
-                  delay: 800,
+                  delay: 80,
                 },
                 {
                   title: "Fact-Check Integration",
                   description:
                     "Automatically compare claims with public databases, such as Google Fact Check Tools and ClaimReview schema.",
-                  delay: 1000,
+                  delay: 100,
                 },
                 {
                   title: "Risk Scoring Engine",
                   description:
                     "Assign a credibility score to media based on forensic signals, context, and third-party validation.",
-                  delay: 1200,
+                  delay: 120,
                 },
                 {
                   title: "Visual Reporting",
                   description:
                     "Generate clear, shareable reports in PDF or web format to support decision-making and public transparency.",
-                  delay: 1400,
+                  delay: 140,
                 },
               ].map((capability, index) => (
                 <AnimatedSection

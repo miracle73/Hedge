@@ -327,41 +327,41 @@ export default function Home() {
                   title: "Deepfake Detection",
                   description:
                     "Analyze image, video, and audio content for AI-generated manipulations using CNN and Whisper-based models.",
-                  delay: 40,
+                  // delay: 40,
                 },
                 {
                   title: "Cheapfake/Shallowfake Detection",
                   description:
                     "Detect basic edits, such as speed changes, splicing, or cropping, using OpenCV and FFmpeg.",
-                  delay: 60,
+                  // delay: 60,
                 },
                 {
                   title: "Metadata & Geolocation Analysis",
                   description:
                     "Reveal hidden metadata and map geolocation to verify context and source.",
-                  delay: 80,
+                  // delay: 80,
                 },
                 {
                   title: "Fact-Check Integration",
                   description:
                     "Automatically compare claims with public databases, such as Google Fact Check Tools and ClaimReview schema.",
-                  delay: 100,
+                  // delay: 100,
                 },
                 {
                   title: "Risk Scoring Engine",
                   description:
                     "Assign a credibility score to media based on forensic signals, context, and third-party validation.",
-                  delay: 120,
+                  // delay: 120,
                 },
                 {
                   title: "Visual Reporting",
                   description:
                     "Generate clear, shareable reports in PDF or web format to support decision-making and public transparency.",
-                  delay: 140,
+                  // delay: 140,
                 },
               ].map((capability, index) => (
                 <AnimatedSection
-                  delay={capability.delay}
+                  // delay={capability.delay}
                   index={8 + index}
                   key={index}
                 >

@@ -437,7 +437,7 @@ export default function About() {
               <div
                 className={`${getStoryCardBackground(
                   0
-                )} rounded-2xl p-8 lg:p-10 border-2 transition-all duration-300`}
+                )} rounded-2xl p-8 lg:p-10 transition-all duration-300`}
                 onClick={() => handleStoryCardClick(0)}
                 onMouseEnter={() => handleStoryCardHover(0)}
                 onMouseLeave={() => handleStoryCardHover(null)}
@@ -476,7 +476,7 @@ export default function About() {
               <div
                 className={`${getStoryCardBackground(
                   1
-                )} rounded-2xl p-8 lg:p-10 border-2 transition-all duration-300`}
+                )} rounded-2xl p-8 lg:p-10  transition-all duration-300`}
                 onClick={() => handleStoryCardClick(1)}
                 onMouseEnter={() => handleStoryCardHover(1)}
                 onMouseLeave={() => handleStoryCardHover(null)}
@@ -516,7 +516,7 @@ export default function About() {
               <div
                 className={`${getStoryCardBackground(
                   2
-                )} rounded-2xl p-8 lg:p-10 border-2 transition-all duration-300`}
+                )} rounded-2xl p-8 lg:p-10  transition-all duration-300`}
                 onClick={() => handleStoryCardClick(2)}
                 onMouseEnter={() => handleStoryCardHover(2)}
                 onMouseLeave={() => handleStoryCardHover(null)}

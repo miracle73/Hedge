@@ -4,7 +4,7 @@ import Logo from "../assets/images/safeguardmedia-5.png";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -171,12 +171,12 @@ export default function Home() {
               {/* Desktop Navigation */}
               <nav className="max-md:text-xs md:flex space-x-8">
                 <a
-                  href="#"
+                  href="/"
                   className="text-gray-900 hover:text-gray-700 font-medium"
                 >
                   Home
                 </a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
+                <a href="/about" className="text-gray-600 hover:text-gray-900">
                   About
                 </a>
                 <a href="#" className="text-gray-600 hover:text-gray-900">
@@ -242,7 +242,7 @@ export default function Home() {
                   size="lg"
                   className="w-full sm:w-auto group hover:bg-gray-100 transition-all duration-300 text-lg px-8 py-4"
                 >
-                  Watch Demo
+                  See Demo
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </Button>
               </div>
@@ -336,9 +336,9 @@ export default function Home() {
                   delay: 60,
                 },
                 {
-                  title: "Metadata & Geolocation Analysis",
+                  title: "Metadata, Geolocation & Reverse Lookup Analysis",
                   description:
-                    "Reveal hidden metadata and map geolocation to verify context and source.",
+                    "Reveal hidden metadata, map geolocation to verify context, and search across the web to find original sources and trace media history.",
                   delay: 80,
                 },
                 {
@@ -386,8 +386,7 @@ export default function Home() {
                   variant="outline"
                   className="bg-white text-gray-900 hover:bg-gray-100 button-hover text-lg px-8 py-4"
                 >
-                  Download Overview
-                  <Download className="ml-2 h-5 w-5" />
+                  Learn More
                 </Button>
               </div>
             </div>

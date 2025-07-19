@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FirstImage from "../assets/images/real9.png";
 import Logo from "../assets/images/safeguardmedia-5.png";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";

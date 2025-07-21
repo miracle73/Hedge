@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button";
 import BgImg from "../assets/images/about2.jpeg";
 import BgImg2 from "../assets/images/about3.jpg";
 import BgImg3 from "../assets/images/about4.jpeg";
+import { useNavigate } from "react-router-dom";
 
 // interface AnimatedSectionProps {
 //   children: React.ReactNode;
@@ -15,6 +16,7 @@ import BgImg3 from "../assets/images/about4.jpeg";
 // }
 
 export default function About() {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState<Record<number, boolean>>({});
   const [showFoundation, setShowFoundation] = useState(true);
   const [selectedStoryCard, setSelectedStoryCard] = useState<number | null>(
@@ -265,7 +267,7 @@ export default function About() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center">
-                <div className="w-24 h-20 rounded-full flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full flex items-center justify-center">
                   <img
                     src={SecondLogo}
                     alt="logo"
@@ -273,13 +275,20 @@ export default function About() {
                   />
                 </div>
               </div>
-              <nav className="max-md:text-xs md:flex space-x-8">
-                <a href="/" className="text-gray-600 hover:text-gray-900">
+              <nav className="max-md:text-xs md:flex space-x-4">
+                <a
+                  className="text-gray-600 hover:text-gray-900"
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
                   Home
                 </a>
                 <a
-                  href="/about"
                   className="text-gray-900 hover:text-gray-700 font-medium"
+                  onClick={() => {
+                    navigate("/about");
+                  }}
                 >
                   About
                 </a>
@@ -305,12 +314,12 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[50vh] lg:min-h-[80vh]">
             {/* Left Content */}
             <div className="text-white space-y-8">
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl max-lg:text-center font-bold text-gray-900 mb-6 leading-tight">
                 Pioneering the Future of{" "}
                 <span className="gradient-text">Digital Truth</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl leading-relaxed">
+              <p className="text-lg sm:text-xl max-lg:text-center  text-gray-600 max-w-3xl leading-relaxed">
                 Born from urgency, built with precision. Learn how our team of
                 engineers, journalists, and AI researchers are reshaping how the
                 world verifies digital content.
@@ -660,7 +669,7 @@ export default function About() {
 
                     {/* Decorative accent */}
                     <div
-                      className={`absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br ${feature.gradient} rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300`}
+                      className={`absolute -top-2 -right-2  bg-gradient-to-br ${feature.gradient} rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300`}
                     ></div>
                   </div>
 

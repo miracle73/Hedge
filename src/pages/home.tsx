@@ -5,6 +5,7 @@ import SecondLogo from "../assets/images/SafeguardMedia8.svg";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ interface AnimatedSectionProps {
 }
 
 export default function Home() {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState<Record<number, boolean>>({});
   const [scrollY, setScrollY] = useState(0);
 
@@ -157,7 +159,7 @@ export default function Home() {
             <div className="flex justify-between items-center h-16">
               {/* Logo */}
               <div className="flex items-center">
-                <div className="w-24 h-20 rounded-full flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full flex items-center justify-center">
                   <div className="logo">
                     <img
                       src={SecondLogo}
@@ -169,14 +171,21 @@ export default function Home() {
               </div>
 
               {/* Desktop Navigation */}
-              <nav className="max-md:text-xs md:flex space-x-8">
+              <nav className="max-md:text-xs md:flex space-x-4">
                 <a
-                  href="/"
                   className="text-gray-900 hover:text-gray-700 font-medium"
+                  onClick={() => {
+                    navigate("/");
+                  }}
                 >
                   Home
                 </a>
-                <a href="/about" className="text-gray-600 hover:text-gray-900">
+                <a
+                  className="text-gray-600 hover:text-gray-900"
+                  onClick={() => {
+                    navigate("/about");
+                  }}
+                >
                   About
                 </a>
                 <a href="#" className="text-gray-600 hover:text-gray-900">

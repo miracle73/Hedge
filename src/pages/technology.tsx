@@ -298,7 +298,7 @@ export default function Technology() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center">
-                <div className="w-20 h-20 rounded-full flex items-center justify-center">
+                <div className="w-20 h-20 max-sm:w-12 max-sm:h-12  rounded-full flex items-center justify-center">
                   <img
                     src={SecondLogo}
                     alt="logo"
@@ -316,7 +316,7 @@ export default function Technology() {
                   Home
                 </a>
                 <a
-                  className="text-gray-900 hover:text-gray-700 font-medium"
+                  className="text-gray-900 hover:text-gray-700 "
                   onClick={() => {
                     navigate("/about");
                   }}
@@ -324,7 +324,7 @@ export default function Technology() {
                   About
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-gray-600 hover:text-gray-900 font-medium"
                   onClick={() => {
                     navigate("/technology");
                   }}

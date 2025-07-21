@@ -408,8 +408,8 @@ export default function Technology() {
                 Why It Matters
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                AI-generated disinformation is no longer a future threat—it's a
-                current crisis. According to the World Economic Forum's 2023
+                AI-generated disinformation is no longer a future threat, it's a
+                current crisis, according to the World Economic Forum's 2023
                 Global Risks Report, "widespread misinformation and
                 disinformation" ranks as the most severe global risk over the
                 next two years.
@@ -454,11 +454,11 @@ export default function Technology() {
             </h3>
             <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
               SafeguardMedia is building an AI-powered content verification
-              stack that detects synthetic media—including deepfakes,
-              shallowfakes, and AI-generated audio—while uncovering hidden
+              stack that detects synthetic media, including deepfakes,
+              shallowfakes, and AI-generated audio, while uncovering hidden
               metadata and linking suspicious content to verified fact-check
-              databases. Our goal: equip users to understand the trustworthiness
-              of media—instantly, and at scale.
+              databases. Our goal is to equip users to understand media
+              trustworthiness instantly, and at scale.
             </p>
           </div>
         </div>
@@ -565,10 +565,10 @@ export default function Technology() {
               <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl">
                 Our browser extension seamlessly integrates with your browsing
                 experience to automatically checks on videos, images, and claims
-                across the web — without breaking your flow. Whether you're on
+                across the web without breaking your flow. Whether you're on
                 YouTube, a Salesforce instance, WhatsApp Web, or social media,
                 get instant verification insights for extra peace. No technical
-                setup. Add Modalities — right where you need it.
+                setup. Add Modalities, right where you need it.
               </p>
             </div>
 
@@ -593,8 +593,8 @@ export default function Technology() {
             Defending <span className="gradient-text">Digital Truth</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8 leading-relaxed">
-            Our technology isn't just designed to detect deception—it's built to
-            defend digital truth. With AI manipulation accelerating, we're
+            Our technology isn't just designed to detect deception, it's built
+            to defend digital truth. With AI manipulation accelerating, we're
             committed to developing tools that are proactive, accessible, and
             trusted by journalists, researchers, and the public.
           </p>

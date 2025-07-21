@@ -431,6 +431,7 @@ export default function Contact() {
                         <MapPin className="w-5 h-5 text-white mt-1" />
                         <div>
                           <p>East Orange, New jersey 07017</p>
+                          <p>United States</p>
                         </div>
                       </div>
                     </div>

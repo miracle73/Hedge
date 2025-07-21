@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
-import { Phone, Mail, MapPin } from "lucide-react";
+import {
+  //  Phone,
+  Mail,
+  MapPin,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";
 import Logo from "../assets/images/safeguardmedia-5.png";
@@ -266,7 +270,6 @@ export default function Contact() {
           </div>
 
           {/* Contact Form Container */}
-          {/* Contact Form Container */}
           <div
             className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-6xl mx-auto"
             data-animate
@@ -414,10 +417,10 @@ export default function Contact() {
                     </p>
 
                     <div className="space-y-6">
-                      <div className="flex items-center space-x-4">
+                      {/* <div className="flex items-center space-x-4">
                         <Phone className="w-5 h-5 text-white" />
                         <span>+1012 3456 789</span>
-                      </div>
+                      </div> */}
 
                       <div className="flex items-center space-x-4">
                         <Mail className="w-5 h-5 text-white" />
@@ -427,8 +430,7 @@ export default function Contact() {
                       <div className="flex items-start space-x-4">
                         <MapPin className="w-5 h-5 text-white mt-1" />
                         <div>
-                          <p>132 Dartmouth Street Boston,</p>
-                          <p>Massachusetts 02156 United States</p>
+                          <p>East Orange, New jersey 07017</p>
                         </div>
                       </div>
                     </div>

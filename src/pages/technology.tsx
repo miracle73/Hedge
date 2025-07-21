@@ -420,29 +420,24 @@ export default function Technology() {
           {/* Statistics Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-16 max-w-6xl mx-auto border-l border-r border-gray-200">
             {stats.map((stat, index) => (
-              <AnimatedSection
-                delay={index * 100 + 400}
-                index={5 + index}
+              <div
                 key={index}
+                className={`p-4 md:p-6 lg:p-8 text-center min-h-[200px] md:min-h-[220px] flex flex-col justify-center ${
+                  index !== stats.length - 1 ? "border-r border-gray-200" : ""
+                } ${index !== 0 ? "md:border-l md:border-gray-200" : ""}`}
               >
                 <div
-                  className={`p-4 md:p-6 lg:p-8 text-center min-h-[200px] md:min-h-[220px] flex flex-col justify-center ${
-                    index !== stats.length - 1 ? "border-r border-gray-200" : ""
-                  } ${index !== 0 ? "md:border-l md:border-gray-200" : ""}`}
+                  className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3`}
                 >
-                  <div
-                    className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3`}
-                  >
-                    {stat.number}
-                  </div>
-                  <p className="text-gray-700 font-medium text-sm md:text-base mb-2 leading-relaxed">
-                    {stat.label}
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-500">
-                    — {stat.source}
-                  </p>
+                  {stat.number}
                 </div>
-              </AnimatedSection>
+                <p className="text-gray-700 font-medium text-sm md:text-base mb-2 leading-relaxed">
+                  {stat.label}
+                </p>
+                <p className="text-xs md:text-sm text-gray-500">
+                  — {stat.source}
+                </p>
+              </div>
             ))}
           </div>
 

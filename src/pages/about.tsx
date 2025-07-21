@@ -393,7 +393,7 @@ export default function About() {
                     <p className="text-gray-700 leading-relaxed text-lg text-center">
                       To restore trust in digital content by empowering people
                       to independently verify the authenticity of what they see
-                      and hear—instantly, and at scale.
+                      and hear instantly, and at scale.
                     </p>
                   </div>
                 </div>

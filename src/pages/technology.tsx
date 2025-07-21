@@ -418,40 +418,49 @@ export default function Technology() {
           </div>
 
           {/* Statistics Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-16 max-w-6xl mx-auto border-l border-r border-gray-200">
             {stats.map((stat, index) => (
               <AnimatedSection
                 delay={index * 100 + 400}
                 index={5 + index}
                 key={index}
               >
-                <div className="stat-counter p-6 rounded-2xl text-center card-hover">
-                  <div className="text-4xl lg:text-5xl font-bold text-[#0f2fa3] mb-2">
+                <div
+                  className={`p-4 md:p-6 lg:p-8 text-center min-h-[200px] md:min-h-[220px] flex flex-col justify-center ${
+                    index !== stats.length - 1 ? "border-r border-gray-200" : ""
+                  } ${index !== 0 ? "md:border-l md:border-gray-200" : ""}`}
+                >
+                  <div
+                    className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3`}
+                  >
                     {stat.number}
                   </div>
-                  <p className="text-gray-700 font-medium mb-2">{stat.label}</p>
-                  <p className="text-sm text-gray-500">— {stat.source}</p>
+                  <p className="text-gray-700 font-medium text-sm md:text-base mb-2 leading-relaxed">
+                    {stat.label}
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-500">
+                    — {stat.source}
+                  </p>
                 </div>
               </AnimatedSection>
             ))}
           </div>
 
           {/* What We Do */}
-          <AnimatedSection delay={800} index={9}>
-            <div className="bg-gradient-to-br from-[#0F2FA333] to-[#0F2FA320] p-8 lg:p-12 rounded-2xl text-center card-hover">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
-                What We Do
-              </h3>
-              <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
-                SafeguardMedia is building an AI-powered content verification
-                stack that detects synthetic media—including deepfakes,
-                shallowfakes, and AI-generated audio—while uncovering hidden
-                metadata and linking suspicious content to verified fact-check
-                databases. Our goal: equip users to understand the
-                trustworthiness of media—instantly, and at scale.
-              </p>
-            </div>
-          </AnimatedSection>
+
+          <div className="bg-gradient-to-br from-[#0F2FA333] to-[#0F2FA320] p-8 lg:p-12 rounded-2xl text-center">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
+              What We Do
+            </h3>
+            <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              SafeguardMedia is building an AI-powered content verification
+              stack that detects synthetic media—including deepfakes,
+              shallowfakes, and AI-generated audio—while uncovering hidden
+              metadata and linking suspicious content to verified fact-check
+              databases. Our goal: equip users to understand the trustworthiness
+              of media—instantly, and at scale.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -480,64 +489,61 @@ export default function Technology() {
               const isExpanded = expandedTech[index];
 
               return (
-                <AnimatedSection
-                  delay={tech.delay}
-                  index={10 + index}
+                <div
                   key={index}
+                  className="border-t border-white/20 hover:bg-white/5 transition-all duration-300"
                 >
-                  <div className="border-t border-white/20 hover:bg-white/5 transition-all duration-300">
-                    {/* Technology Header - Clickable */}
-                    <div
-                      className="py-6 cursor-pointer"
-                      onClick={() => toggleTech(index)}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">
-                            {tech.title}
-                          </h3>
-                          <p className="text-gray-300">{tech.description}</p>
-                        </div>
+                  {/* Technology Header - Clickable */}
+                  <div
+                    className="py-6 cursor-pointer"
+                    onClick={() => toggleTech(index)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">
+                          {tech.title}
+                        </h3>
+                        <p className="text-gray-300">{tech.description}</p>
+                      </div>
 
-                        {/* Arrow Icon */}
-                        <div className="flex-shrink-0 ml-4">
-                          {isExpanded ? (
-                            <ChevronDown className="w-6 h-6 text-white transition-transform duration-300" />
-                          ) : (
-                            <ChevronDown className="w-6 h-6 text-white transition-transform duration-300 -rotate-90" />
-                          )}
-                        </div>
+                      {/* Arrow Icon */}
+                      <div className="flex-shrink-0 ml-4">
+                        {isExpanded ? (
+                          <ChevronDown className="w-6 h-6 text-white transition-transform duration-300" />
+                        ) : (
+                          <ChevronDown className="w-6 h-6 text-white transition-transform duration-300 -rotate-90" />
+                        )}
                       </div>
                     </div>
-
-                    {/* Expandable Details */}
-                    <div
-                      className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                        isExpanded
-                          ? "max-h-96 opacity-100 pb-6"
-                          : "max-h-0 opacity-0"
-                      }`}
-                    >
-                      <div className="pl-0">
-                        <ul className="space-y-3">
-                          {tech.details.map((detail, detailIndex) => (
-                            <li key={detailIndex} className="flex items-start">
-                              <div className="w-1.5 h-1.5 bg-white rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-300 text-sm leading-relaxed">
-                                {detail}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {/* Bottom border for last item */}
-                    {index === technologies.length - 1 && (
-                      <div className="border-b border-white/20"></div>
-                    )}
                   </div>
-                </AnimatedSection>
+
+                  {/* Expandable Details */}
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                      isExpanded
+                        ? "max-h-96 opacity-100 pb-6"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="pl-0">
+                      <ul className="space-y-3">
+                        {tech.details.map((detail, detailIndex) => (
+                          <li key={detailIndex} className="flex items-start">
+                            <div className="w-1.5 h-1.5 bg-white rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                            <span className="text-gray-300 text-sm leading-relaxed">
+                              {detail}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Bottom border for last item */}
+                  {index === technologies.length - 1 && (
+                    <div className="border-b border-white/20"></div>
+                  )}
+                </div>
               );
             })}
           </div>

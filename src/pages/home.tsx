@@ -286,34 +286,32 @@ export default function Home() {
           {/* Bottom Content Sections */}
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8 relative z-10">
             {/* Why It Matters */}
-            <AnimatedSection delay={1200} index={5}>
-              <div className="bg-gradient-to-br from-[#0F2FA333] to-[#0F2FA320] p-6 lg:p-8 rounded-2xl card-hover backdrop-blur-sm">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">
-                  Why Media Integrity Matters
-                </h2>
-                <p className="text-gray-700 leading-relaxed">
-                  Synthetic media—from deepfakes to low-tech video edits—is
-                  spreading faster than the truth. Without powerful tools to
-                  validate what we see and hear, misinformation thrives and
-                  public trust collapses.
-                </p>
-              </div>
-            </AnimatedSection>
+
+            <div className="bg-gradient-to-br from-[#0F2FA333] to-[#0F2FA320] p-6 lg:p-8 rounded-2xl card-hover backdrop-blur-sm">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">
+                Why Media Integrity Matters
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                Synthetic media from deepfakes to low-tech video edits is
+                spreading faster than the truth. Without powerful tools to
+                validate what we see and hear, misinformation thrives and public
+                trust collapses.
+              </p>
+            </div>
 
             {/* What We Do */}
-            <AnimatedSection delay={140} index={6}>
-              <div className="bg-gradient-to-br from-[#F4F4F4] to-[#FFFFFF] p-6 lg:p-8 rounded-2xl border border-gray-200 card-hover backdrop-blur-sm">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">
-                  AI-Powered Media Verification
-                </h2>
-                <p className="text-gray-700 leading-relaxed">
-                  SafeguardMedia provides real-time detection of manipulated
-                  images, video, and audio. Our platform integrates cutting-edge
-                  detection models, fact-checking APIs, and metadata analysis to
-                  enable users to instantly assess content credibility.
-                </p>
-              </div>
-            </AnimatedSection>
+
+            <div className="bg-gradient-to-br from-[#F4F4F4] to-[#FFFFFF] p-6 lg:p-8 rounded-2xl border border-gray-200 card-hover backdrop-blur-sm">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">
+                AI-Powered Media Verification
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                SafeguardMedia provides real-time detection of manipulated
+                images, video, and audio. Our platform integrates cutting-edge
+                detection models, fact-checking APIs, and metadata analysis to
+                enable users to instantly assess content credibility.
+              </p>
+            </div>
           </div>
         </div>
 

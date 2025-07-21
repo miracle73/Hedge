@@ -27,4 +27,50 @@
     box-shadow: 0 20px 40px rgba(15, 47, 163, 0.15);
     outline: none;
   }
+
+  @keyframes flyIn {
+    0% {
+      opacity: 0;
+      transform: translate(var(--start-x, 0), var(--start-y, 0))
+        rotate(var(--start-rotation, 0deg)) scale(0);
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+  }
+
+  .character-fly {
+    animation: flyIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    opacity: 0;
+  }
+
+  .flying-text {
+    overflow: visible;
+  }
+
+  /* Enhanced gradient text animation */
+  .gradient-text {
+    background: linear-gradient(270deg, #0f2fa3, #0080ff, #00c4ff);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient 3s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }

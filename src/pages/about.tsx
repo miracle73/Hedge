@@ -102,15 +102,6 @@ export default function About() {
     return "story-card border-gray-100";
   };
 
-  //   const getBackgroundImage = () => {
-  //     if (hoveredStoryCard === 0 || hoveredStoryCard === 2) {
-  //       return BgImg;
-  //     } else if (hoveredStoryCard === 1) {
-  //       return BgImg2;
-  //     }
-  //     return null;
-  //   };
-
   const styles = `
   
     @keyframes slideInFromLeft {
@@ -275,7 +266,7 @@ export default function About() {
                   />
                 </div>
               </div>
-              <nav className="max-md:text-xs md:flex space-x-4">
+              <nav className="max-md:text-xs md:flex space-x-4  max-sm:space-x-2">
                 <a
                   className="text-gray-600 hover:text-gray-900"
                   onClick={() => {
@@ -292,12 +283,30 @@ export default function About() {
                 >
                   About
                 </a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
+                <a
+                  className="text-gray-600 hover:text-gray-900"
+                  onClick={() => {
+                    navigate("/technology");
+                  }}
+                >
                   Technology
+                </a>
+                <a
+                  className="text-gray-600 hover:text-gray-900 sm:hidden "
+                  onClick={() => {
+                    navigate("/contact");
+                  }}
+                >
+                  contact
                 </a>
               </nav>
               <div className="flex items-center space-x-4">
-                <Button className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90">
+                <Button
+                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90"
+                  onClick={() => {
+                    navigate("/contact");
+                  }}
+                >
                   Contact
                 </Button>
               </div>
@@ -341,7 +350,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Vision & Mission - Cards with Animation that toggles with Foundation */}
       {/* Vision & Mission - Cards with Animation that toggles with Foundation */}
       <section className="py-14 lg:py-20 relative">
         <div className="absolute inset-0 reverse-diagonal-bg bg-gradient-to-br from-gray-50 to-white"></div>
@@ -586,7 +594,6 @@ export default function About() {
             </p>
           </div>
 
-          {/* Features Grid with Animation - Fixed */}
           {/* Features Grid with Animation - Enhanced */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {[

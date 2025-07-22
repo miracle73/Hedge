@@ -15,13 +15,6 @@ import { ChevronDown } from "lucide-react";
 import Logo from "../assets/images/safeguardmedia-5.png";
 import ImageExt from "../assets/images/browserExt.png";
 
-interface AnimatedSectionProps {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-  index: number;
-}
-
 export default function Technology() {
   const [isVisible, setIsVisible] = useState<Record<number, boolean>>({});
   const [scrollY, setScrollY] = useState(0);
@@ -55,25 +48,6 @@ export default function Technology() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isVisible]);
-
-  const AnimatedSection: React.FC<AnimatedSectionProps> = ({
-    children,
-    delay = 0,
-    className = "",
-    index,
-  }) => (
-    <div
-      data-animate
-      className={`transition-all duration-1000 ease-out ${
-        isVisible[index]
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-8"
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
 
   const styles = `
     @keyframes float {
@@ -365,34 +339,27 @@ export default function Technology() {
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
               {/* Left Image */}
               <div className="flex-1 max-w-lg lg:max-w-none">
-                <AnimatedSection delay={1000} index={4}>
-                  <div className="relative  overflow-hidden shadow-2xl">
-                    <img
-                      src={TechnologyImg}
-                      alt="AI-powered media verification technology dashboard"
-                      className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
-                    />
-                  </div>
-                </AnimatedSection>
+                <div className="relative  overflow-hidden shadow-2xl">
+                  <img
+                    src={TechnologyImg}
+                    alt="AI-powered media verification technology dashboard"
+                    className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
               </div>
               {/* Right Content */}
               <div className="flex-1 text-center lg:text-left">
-                <AnimatedSection delay={400} index={1}>
-                  <h1 className="text-3xl sm:text-4xl lg:text-6xl text-end font-bold text-gray-900 mb-6 leading-tight">
-                    Powering the Fight Against{" "}
-                    <span className="gradient-text">Manipulated Media</span>{" "}
-                    with AI
-                  </h1>
-                </AnimatedSection>
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl text-end font-bold text-gray-900 mb-6 leading-tight">
+                  Powering the Fight Against{" "}
+                  <span className="gradient-text">Manipulated Media</span> with
+                  AI
+                </h1>
 
-                <AnimatedSection delay={600} index={2}>
-                  <p className="text-lg sm:text-xl text-gray-600 text-end mb-8 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                    SafeguardMedia combines deepfake detection, metadata
-                    forensics, and scalable cloud infrastructure to deliver
-                    real-time media verification for a trust-first digital
-                    world.
-                  </p>
-                </AnimatedSection>
+                <p className="text-lg sm:text-xl text-gray-600 text-end mb-8 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
+                  SafeguardMedia combines deepfake detection, metadata
+                  forensics, and scalable cloud infrastructure to deliver
+                  real-time media verification for a trust-first digital world.
+                </p>
               </div>
             </div>
           </div>
@@ -403,18 +370,16 @@ export default function Technology() {
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <AnimatedSection delay={200} index={4}>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Why It Matters
-              </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                AI-generated disinformation is no longer a future threat, it's a
-                current crisis, according to the World Economic Forum's 2023
-                Global Risks Report, "widespread misinformation and
-                disinformation" ranks as the most severe global risk over the
-                next two years.
-              </p>
-            </AnimatedSection>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              Why It Matters
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              AI-generated disinformation is no longer a future threat, it's a
+              current crisis, according to the World Economic Forum's 2023
+              Global Risks Report, "widespread misinformation and
+              disinformation" ranks as the most severe global risk over the next
+              two years.
+            </p>
           </div>
 
           {/* Statistics Grid */}

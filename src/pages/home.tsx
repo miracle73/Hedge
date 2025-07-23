@@ -224,11 +224,18 @@ export default function Home() {
           <div className="text-center mb-12 relative z-10">
             {/* Badge */}
             <div className="mb-6">
+              <div className="w-20 h-20 max-sm:w-12 max-sm:h-12 rounded-full flex items-center justify-center">
+                <img
+                  src={SecondLogo}
+                  alt="logo"
+                  className="max-lg:h-16 max-lg:w-16"
+                />
+              </div>
               <Badge
                 variant="secondary"
                 className="bg-[#0F2FA30D] rounded-full border bg-gradient-to-r from-[#0F2FA3] to-[#0080FF] bg-clip-text text-transparent text-blue-700 border-[#0F2FA3] px-4 py-2"
               >
-                AI-Powered Media Verification Platform
+                Safeguardmedia
               </Badge>
             </div>
 

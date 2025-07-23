@@ -228,17 +228,22 @@ export default function Home() {
                 variant="secondary"
                 className="bg-[#0F2FA30D] rounded-full border bg-gradient-to-r from-[#0F2FA3] to-[#0080FF] bg-clip-text text-transparent text-blue-700 border-[#0F2FA3] px-4 py-2"
               >
-                <img src={SecondLogo} alt="logo" className="h-8 w-8" />
-                Safeguardmedia
+                AI-Powered Media Verification Platform
               </Badge>
             </div>
 
             {/* Headline */}
             <AnimatedSection delay={400} index={1}>
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Restoring Trust in a{" "}
-                <span className="gradient-text">Digitally Distorted</span> World
-              </h1>
+              <div className="flex justify-center items-center">
+                <img
+                  src={SecondLogo}
+                  alt="logo"
+                  className="w-20 h-20 lg:h-28 lg:w-28"
+                />
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  Safe<span className="gradient-text">guard</span>media
+                </h1>
+              </div>
             </AnimatedSection>
 
             {/* Subtitle */}

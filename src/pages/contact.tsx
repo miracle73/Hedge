@@ -430,7 +430,7 @@ export default function Contact() {
                       <div className="flex items-start space-x-4">
                         <MapPin className="w-5 h-5 text-white mt-1" />
                         <div>
-                          <p>East Orange, New jersey 07017</p>
+                          <p>East Orange, New jersey</p>
                           <p>United States</p>
                         </div>
                       </div>

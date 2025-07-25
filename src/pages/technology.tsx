@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
-import {
-  Brain,
-  Search,
-  CheckCircle,
-  BarChart3,
-  Globe,
-  Download,
-} from "lucide-react";
+import { Brain, Search, CheckCircle, BarChart3, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";
-import TechnologyImg from "../assets/images/technology2.png";
+import TechnologyImg from "../assets/images/technology3.jpg";
 import { ChevronDown } from "lucide-react";
 import Logo from "../assets/images/safeguardmedia-5.png";
 import ImageExt from "../assets/images/browserExt.png";
@@ -209,20 +202,7 @@ export default function Technology() {
       gradient: "from-[#7C3AED] to-[#A78BFA]",
       delay: 800,
     },
-    {
-      title: "Cloud-Native Architecture",
-      description: "Built on Google Cloud Platform with Azure compatibility",
-      details: [
-        "Vertex AI for scalable model training & deployment",
-        "Cloud Functions for real-time media processing",
-        "Firebase for user authentication and media storage",
-        "End-to-end encryption and privacy compliance (GDPR + NDPR roadmap)",
-        "Global scalability with secure media handling",
-      ],
-      icon: Globe,
-      gradient: "from-[#059669] to-[#34D399]",
-      delay: 1000,
-    },
+
     {
       title: "Browser Extension",
       description: "Real-time media verification while browsing (Coming Soon)",

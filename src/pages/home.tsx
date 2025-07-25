@@ -260,6 +260,9 @@ export default function Home() {
                 <Button
                   size="lg"
                   className="w-full sm:w-auto bg-[#0F2FA3] button-hover text-lg px-8 py-4"
+                  onClick={() => {
+                    navigate("/get-started");
+                  }}
                 >
                   Request Early Access
                 </Button>
@@ -434,7 +437,12 @@ export default function Home() {
                   in real-time while you browse online content. Stay informed
                   without leaving the page.
                 </p>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white button-hover text-lg px-8 py-4">
+                <Button
+                  className="bg-blue-600 hover:bg-blue-700 text-white button-hover text-lg px-8 py-4"
+                  onClick={() => {
+                    navigate("/get-started");
+                  }}
+                >
                   Sign Up for Beta Access
                 </Button>
               </div>

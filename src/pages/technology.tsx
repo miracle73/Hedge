@@ -542,6 +542,9 @@ export default function Technology() {
             <Button
               size="lg"
               className="w-full sm:w-auto bg-[#0F2FA3] button-hover text-lg px-8 py-4"
+              onClick={() => {
+                navigate("/get-started");
+              }}
             >
               Start Free Trial
             </Button>

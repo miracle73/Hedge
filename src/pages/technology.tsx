@@ -282,7 +282,7 @@ export default function Technology() {
               </div>
               <nav className="max-md:text-xs md:flex space-x-4  max-sm:space-x-2">
                 <a
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-gray-600 hover:text-gray-900 cursor-pointer"
                   onClick={() => {
                     navigate("/");
                   }}
@@ -290,7 +290,7 @@ export default function Technology() {
                   Home
                 </a>
                 <a
-                  className="text-gray-900 hover:text-gray-700 "
+                  className="text-gray-900 hover:text-gray-700 cursor-pointer "
                   onClick={() => {
                     navigate("/about");
                   }}
@@ -298,7 +298,7 @@ export default function Technology() {
                   About
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900 font-medium"
+                  className="text-gray-600 hover:text-gray-900 cursor-pointer font-medium"
                   onClick={() => {
                     navigate("/technology");
                   }}
@@ -306,7 +306,7 @@ export default function Technology() {
                   Technology
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900 sm:hidden "
+                  className="text-gray-600 hover:text-gray-900 cursor-pointer sm:hidden "
                   onClick={() => {
                     navigate("/contact");
                   }}
@@ -316,7 +316,7 @@ export default function Technology() {
               </nav>
               <div className="flex items-center space-x-4">
                 <Button
-                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90"
+                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90 cursor-pointer"
                   onClick={() => {
                     navigate("/contact");
                   }}
@@ -599,6 +599,7 @@ export default function Technology() {
                   "AI Deepfake Detection",
                   "AI-Assisted Fact-Checking",
                   "Cybersecurity & Fraud Prevention",
+                  "Detection & Analysis tools",
                 ].map((item, index) => (
                   <li key={index}>
                     <div className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer">

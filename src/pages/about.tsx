@@ -22,8 +22,10 @@ export default function About() {
   const [selectedStoryCard, setSelectedStoryCard] = useState<number | null>(
     null
   );
+  const [isHovering, setIsHovering] = useState(false);
   const [hoveredStoryCard, setHoveredStoryCard] = useState<number | null>(null);
   const [isExiting, setIsExiting] = useState(false);
+  const [activeCards, setActiveCards] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,19 +47,19 @@ export default function About() {
 
   // Toggle between Foundation and Mission/Vision every 5 seconds
   useEffect(() => {
+    if (isHovering) return;
+
     const interval = setInterval(() => {
-      // Start exit animation
       setIsExiting(true);
 
-      // After exit animation completes, switch content and reset exit state
       setTimeout(() => {
         setShowFoundation((prev) => !prev);
         setIsExiting(false);
-      }, 600); // 600ms matches the exit animation duration
+      }, 600);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isHovering]);
 
   //   const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   //     children,
@@ -268,7 +270,7 @@ export default function About() {
               </div>
               <nav className="max-md:text-xs md:flex space-x-4  max-sm:space-x-2">
                 <a
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-gray-600 hover:text-gray-900 cursor-pointer"
                   onClick={() => {
                     navigate("/");
                   }}
@@ -276,7 +278,7 @@ export default function About() {
                   Home
                 </a>
                 <a
-                  className="text-gray-900 hover:text-gray-700 font-medium"
+                  className="text-gray-900 hover:text-gray-700 font-medium cursor-pointer"
                   onClick={() => {
                     navigate("/about");
                   }}
@@ -284,7 +286,7 @@ export default function About() {
                   About
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-gray-600 hover:text-gray-900 cursor-pointer"
                   onClick={() => {
                     navigate("/technology");
                   }}
@@ -292,7 +294,7 @@ export default function About() {
                   Technology
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900 sm:hidden "
+                  className="text-gray-600 hover:text-gray-900 sm:hidden cursor-pointer"
                   onClick={() => {
                     navigate("/contact");
                   }}
@@ -300,9 +302,9 @@ export default function About() {
                   contact
                 </a>
               </nav>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 ">
                 <Button
-                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90"
+                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90 cursor-pointer"
                   onClick={() => {
                     navigate("/contact");
                   }}
@@ -351,6 +353,7 @@ export default function About() {
       </section>
 
       {/* Vision & Mission - Cards with Animation that toggles with Foundation */}
+      {/* Vision & Mission - Cards with Animation that toggles with Foundation */}
       <section className="py-14 lg:py-20 relative">
         <div className="absolute inset-0 reverse-diagonal-bg bg-gradient-to-br from-gray-50 to-white"></div>
 
@@ -374,6 +377,8 @@ export default function About() {
               <div
                 className="grid md:grid-cols-2 gap-8 lg:gap-12"
                 key="mission-vision"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
               >
                 {/* Vision */}
                 <div
@@ -601,7 +606,6 @@ export default function About() {
                 title: "Newsroom Editors",
                 description:
                   "Real-time verification during breaking news cycles with comprehensive media analysis",
-
                 gradient: "from-[#0F2FA3] via-[#1E40AF] to-[#3B82F6]",
                 accentColor: "border-blue-400/30",
                 shadowColor: "shadow-blue-500/20",
@@ -610,7 +614,6 @@ export default function About() {
                 title: "Policy Analysts",
                 description:
                   "Evidence-based assessment of information campaigns with detailed forensic reporting",
-
                 gradient: "from-[#7C3AED] via-[#8B5CF6] to-[#A78BFA]",
                 accentColor: "border-purple-400/30",
                 shadowColor: "shadow-purple-500/20",
@@ -619,7 +622,6 @@ export default function About() {
                 title: "Fact-Checkers",
                 description:
                   "Forensic-grade tools for comprehensive verification with multi-source validation",
-
                 gradient: "from-[#059669] via-[#10B981] to-[#34D399]",
                 accentColor: "border-emerald-400/30",
                 shadowColor: "shadow-emerald-500/20",
@@ -628,7 +630,6 @@ export default function About() {
                 title: "Researchers",
                 description:
                   "Academic-quality analysis with detailed reporting and citation-ready documentation",
-
                 gradient: "from-[#DC2626] via-[#EF4444] to-[#F87171]",
                 accentColor: "border-red-400/30",
                 shadowColor: "shadow-red-500/20",
@@ -637,7 +638,6 @@ export default function About() {
                 title: "Citizens",
                 description:
                   "User-friendly tools for everyday media consumption with instant credibility scores",
-
                 gradient: "from-[#EA580C] via-[#F97316] to-[#FB923C]",
                 accentColor: "border-orange-400/30",
                 shadowColor: "shadow-orange-500/20",
@@ -646,37 +646,41 @@ export default function About() {
                 title: "Organizations",
                 description:
                   "Enterprise solutions for institutional verification with scalable API integration",
-
                 gradient: "from-[#4338CA] via-[#6366F1] to-[#818CF8]",
                 accentColor: "border-indigo-400/30",
                 shadowColor: "shadow-indigo-500/20",
               },
             ].map((feature, index) => {
+              const isActive = activeCards[index] || false;
+
+              const handleCardToggle = () => {
+                setActiveCards((prev) => ({
+                  ...prev,
+                  [index]: !prev[index],
+                }));
+              };
+
               return (
                 <div
                   key={index}
-                  className={`group relative bg-white/5 backdrop-blur-md rounded-3xl p-8 border ${feature.accentColor} hover:border-white/40 transition-all duration-500 h-full hover:scale-105 hover:-translate-y-2 ${feature.shadowColor} hover:shadow-2xl`}
+                  className={`group relative bg-white/5 backdrop-blur-md rounded-3xl p-8 border ${feature.accentColor} hover:border-white/40 transition-all duration-500 h-full hover:scale-105 hover:-translate-y-2 ${feature.shadowColor} hover:shadow-2xl cursor-pointer`}
+                  onClick={handleCardToggle}
+                  onTouchStart={handleCardToggle}
                 >
-                  {/* Gradient overlay on hover */}
+                  {/* Gradient overlay on hover and click/touch */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`}
+                    className={`absolute inset-0 bg-gradient-to-br ${
+                      feature.gradient
+                    } ${
+                      isActive ? "opacity-10" : "opacity-0"
+                    } group-hover:opacity-10 rounded-3xl transition-opacity duration-500`}
                   ></div>
 
                   {/* Icon container */}
                   <div className="relative mb-6">
-                    {/* <div
-                      className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}
-                    >
-                      <img
-                        src={feature.icon}
-                        alt={`${feature.title} icon`}
-                        className="w-12 h-12 object-contain"
-                      />
-                    </div> */}
-
                     {/* Decorative accent */}
                     <div
-                      className={`absolute -top-2 -right-2  bg-gradient-to-br ${feature.gradient} rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300`}
+                      className={`absolute -top-2 -right-2 bg-gradient-to-br ${feature.gradient} rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300`}
                     ></div>
                   </div>
 
@@ -692,7 +696,11 @@ export default function About() {
 
                   {/* Bottom accent line */}
                   <div
-                    className={`absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    className={`absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r ${
+                      feature.gradient
+                    } ${
+                      isActive ? "opacity-100" : "opacity-0"
+                    } group-hover:opacity-100 transition-opacity duration-500`}
                   ></div>
                 </div>
               );
@@ -746,6 +754,7 @@ export default function About() {
                   "AI Deepfake Detection",
                   "AI-Assisted Fact-Checking",
                   "Cybersecurity & Fraud Prevention",
+                  "Detection & Analysis tools",
                 ].map((item, index) => (
                   <li key={index}>
                     <div className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer">

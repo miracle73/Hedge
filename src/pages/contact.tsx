@@ -209,7 +209,7 @@ export default function Contact() {
               </div>
               <nav className="max-md:text-xs md:flex space-x-4  max-sm:space-x-2">
                 <a
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-gray-600 hover:text-gray-900 cursor-pointer"
                   onClick={() => {
                     navigate("/");
                   }}
@@ -217,7 +217,7 @@ export default function Contact() {
                   Home
                 </a>
                 <a
-                  className="text-gray-900 hover:text-gray-700"
+                  className="text-gray-900 hover:text-gray-700 cursor-pointer"
                   onClick={() => {
                     navigate("/about");
                   }}
@@ -225,7 +225,7 @@ export default function Contact() {
                   About
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-gray-600 hover:text-gray-900 cursor-pointer"
                   onClick={() => {
                     navigate("/technology");
                   }}
@@ -233,7 +233,7 @@ export default function Contact() {
                   Technology
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900 sm:hidden font-medium"
+                  className="text-gray-600 hover:text-gray-900 sm:hidden cursor-pointer font-medium"
                   onClick={() => {
                     navigate("/contact");
                   }}
@@ -241,9 +241,9 @@ export default function Contact() {
                   contact
                 </a>
               </nav>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 ">
                 <Button
-                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90"
+                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90 cursor-pointer"
                   onClick={() => {
                     navigate("/contact");
                   }}
@@ -515,6 +515,7 @@ export default function Contact() {
                   "AI Deepfake Detection",
                   "AI-Assisted Fact-Checking",
                   "Cybersecurity & Fraud Prevention",
+                  "Detection & Analysis tools",
                 ].map((item, index) => (
                   <li key={index}>
                     <div className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer">

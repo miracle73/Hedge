@@ -4,7 +4,7 @@ import Logo from "../assets/images/safeguardmedia-5.png";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
-import { ArrowRight } from "lucide-react";
+// import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface AnimatedSectionProps {
@@ -168,7 +168,7 @@ export default function Home() {
               </div>
               <nav className="max-md:text-xs md:flex space-x-4  max-sm:space-x-2">
                 <a
-                  className="text-gray-600 hover:text-gray-900 font-medium"
+                  className="text-gray-600 hover:text-gray-900 font-medium cursor-pointer"
                   onClick={() => {
                     navigate("/");
                   }}
@@ -176,7 +176,7 @@ export default function Home() {
                   Home
                 </a>
                 <a
-                  className="text-gray-900 hover:text-gray-700"
+                  className="text-gray-900 hover:text-gray-700 cursor-pointer"
                   onClick={() => {
                     navigate("/about");
                   }}
@@ -184,7 +184,7 @@ export default function Home() {
                   About
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-gray-600 hover:text-gray-900 cursor-pointer"
                   onClick={() => {
                     navigate("/technology");
                   }}
@@ -192,7 +192,7 @@ export default function Home() {
                   Technology
                 </a>
                 <a
-                  className="text-gray-600 hover:text-gray-900 sm:hidden"
+                  className="text-gray-600 hover:text-gray-900 sm:hidden cursor-pointer"
                   onClick={() => {
                     navigate("/contact");
                   }}
@@ -202,7 +202,7 @@ export default function Home() {
               </nav>
               <div className="flex items-center space-x-4">
                 <Button
-                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90"
+                  className="hidden sm:inline-flex bg-[#0F2FA3] hover:bg-[#0F2FA3]/90 cursor-pointer"
                   onClick={() => {
                     navigate("/contact");
                   }}
@@ -263,14 +263,14 @@ export default function Home() {
                 >
                   Request Early Access
                 </Button>
-                <Button
+                {/* <Button
                   variant="ghost"
                   size="lg"
                   className="w-full sm:w-auto group hover:bg-gray-100 transition-all duration-300 text-lg px-8 py-4"
                 >
                   See Demo
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
-                </Button>
+                </Button> */}
               </div>
             </AnimatedSection>
           </div>
@@ -405,7 +405,12 @@ export default function Home() {
                 <br className="block" />
                 {""}the future of truth in digital media.
               </h3>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                onClick={() => {
+                  navigate("/technology");
+                }}
+              >
                 <Button
                   variant="outline"
                   className="bg-white text-gray-900 hover:bg-gray-100 button-hover text-lg px-8 py-4"
@@ -469,6 +474,7 @@ export default function Home() {
                   "AI Deepfake Detection",
                   "AI-Assisted Fact-Checking",
                   "Cybersecurity & Fraud Prevention",
+                  "Detection & Analysis tools",
                 ].map((item, index) => (
                   <li key={index}>
                     <div className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer">

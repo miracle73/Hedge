@@ -1,5 +1,5 @@
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
@@ -7,10 +7,20 @@ import {
   //  Phone,
   Mail,
   MapPin,
+  AlertCircle,
+  X,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";
 import Logo from "../assets/images/safeguardmedia-5.png";
+// import emailjs from "@emailjs/browser";
+import emailjs from "emailjs-com";
+// const template_id = import.meta.env.TEMPLATE_ID;
+// const service_id = import.meta.env.SERVICE_ID;
+// const public_key = import.meta.env.PUBLIC_KEY;
+const serviceId = "service_jgmgy9d";
+const templateId = "template_k5yd4dp";
+const publicKey = "uYW2yzDGY0khLB0ht";
 
 export default function Contact() {
   const [isVisible, setIsVisible] = useState<Record<number, boolean>>({});
@@ -23,7 +33,11 @@ export default function Contact() {
     subject: "General Inquiry",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
+  const form = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +56,26 @@ export default function Contact() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isVisible]);
 
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+      }, 5000); // Show error for 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000); // Show success for 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -53,19 +87,103 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, subject }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission here
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      subject: "General Inquiry",
-      message: "",
-    });
+    setIsSubmitting(true);
+
+    console.log("Service ID:", serviceId);
+    console.log("Template ID:", templateId);
+    console.log("Public Key:", publicKey);
+    if (form.current) {
+      console.log("Form data:", new FormData(form.current));
+    }
+
+    if (form.current) {
+      emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
+        (response) => {
+          console.log("Email sent successfully:", response);
+          setSuccessMessage("Message sent successfully!");
+
+          // Reset form
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phoneNumber: "",
+            subject: "General Inquiry",
+            message: "",
+          });
+          setIsSubmitting(false);
+        },
+        (error) => {
+          console.error("Detailed error:", error);
+
+          let errorMessage = "Failed to send message. Please try again.";
+
+          // More specific error messages
+          if (error.status === 400) {
+            errorMessage = "Bad request - check your template configuration";
+          } else if (error.status === 402) {
+            errorMessage =
+              "You may have exceeded the free tier limit. Please try again later.";
+          } else if (error.status === 429) {
+            errorMessage =
+              "Too many requests - please wait before sending another email";
+          } else if (error.text || error.message) {
+            errorMessage = `Failed to send message: ${
+              error.text || error.message
+            }`;
+          }
+
+          setErrorMessage(errorMessage);
+          setIsSubmitting(false);
+        }
+      );
+    } else {
+      setErrorMessage("Form reference is not available. Please try again.");
+      setIsSubmitting(false);
+    }
   };
+
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+
+  //   try {
+  //     // EmailJS configuration - you'll need to set these up in your EmailJS account
+  //     const templateParams = {
+  //       name: `${formData.firstName} ${formData.lastName}`,
+  //       email: formData.email,
+  //       phone_number: formData.phoneNumber,
+  //       subject: formData.subject,
+  //       message: formData.message,
+  //       to_email: "info@safeguardmedia.org",
+  //     };
+
+  //     await emailjs.send(
+  //       "service_jgmgy9d", // Replace with your EmailJS service ID - service_jgmgy9d
+  //       "template_k5yd4dp", // Replace with your EmailJS template ID - template_k5yd4dp
+  //       templateParams,
+  //       "uYW2yzDGY0khLB0ht" // Replace with your EmailJS public key-uYW2yzDGY0khLB0ht
+  //     );
+
+  //     alert("Message sent successfully!");
+  //   } catch (error) {
+  //     console.error("Failed to send message:", error);
+  //     alert("Failed to send message. Please try again.");
+  //   } finally {
+  //     setIsSubmitting(false);
+  //     // Reset form
+  //     setFormData({
+  //       firstName: "",
+  //       lastName: "",
+  //       email: "",
+  //       phoneNumber: "",
+  //       subject: "General Inquiry",
+  //       message: "",
+  //     });
+  //   }
+  // };
 
   const styles = `
     @keyframes float {
@@ -277,7 +395,54 @@ export default function Contact() {
             <div className="grid lg:grid-cols-5 min-h-[600px]">
               {/* Contact Form - Right Side (First on mobile, second on desktop) */}
               <div className="lg:col-span-3 order-1 lg:order-2 p-8 lg:p-12">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                  {/* Error Message */}
+                  {errorMessage && (
+                    <div className="flex items-center p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg">
+                      <AlertCircle className="w-4 h-4 mr-2 flex-shrink-0" />
+                      <span>{errorMessage}</span>
+                      <button
+                        type="button"
+                        onClick={() => setErrorMessage("")}
+                        className="ml-auto text-red-400 hover:text-red-600"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Success Message */}
+                  {successMessage && (
+                    <div className="flex items-center p-3 text-sm text-green-600 bg-green-50 border border-green-200 rounded-lg">
+                      <div className="w-4 h-4 mr-2 flex-shrink-0">
+                        <svg
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <span>{successMessage}</span>
+                      <button
+                        type="button"
+                        onClick={() => setSuccessMessage("")}
+                        className="ml-auto text-green-400 hover:text-green-600"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+                  {/* Add this hidden input for the combined name */}
+                  <input
+                    type="hidden"
+                    name="name"
+                    value={`${formData.firstName} ${formData.lastName}`}
+                  />
                   {/* Name Fields */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
@@ -286,7 +451,7 @@ export default function Contact() {
                       </label>
                       <Input
                         type="text"
-                        name="firstName"
+                        name="firstName" // Make sure this matches your EmailJS template
                         value={formData.firstName}
                         onChange={handleInputChange}
                         className="w-full border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none px-0 focus:border-[#0F2FA3] focus:ring-0"
@@ -299,7 +464,7 @@ export default function Contact() {
                       </label>
                       <Input
                         type="text"
-                        name="lastName"
+                        name="lastName" // Make sure this matches your EmailJS template
                         value={formData.lastName}
                         onChange={handleInputChange}
                         className="w-full border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none px-0 focus:border-[#0F2FA3] focus:ring-0"
@@ -316,7 +481,7 @@ export default function Contact() {
                       </label>
                       <Input
                         type="email"
-                        name="email"
+                        name="email" // Make sure this matches your EmailJS template
                         value={formData.email}
                         onChange={handleInputChange}
                         className="w-full border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none px-0 focus:border-[#0F2FA3] focus:ring-0"
@@ -328,14 +493,17 @@ export default function Contact() {
                         Phone Number
                       </label>
                       <div className="flex">
-                        <select className="border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none bg-transparent focus:border-[#0F2FA3] focus:ring-0 mr-2">
-                          <option>+1</option>
-                          <option>+44</option>
-                          <option>+91</option>
+                        <select
+                          name="countryCode"
+                          className="border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none bg-transparent focus:border-[#0F2FA3] focus:ring-0 mr-2"
+                        >
+                          <option value="+1">+1</option>
+                          <option value="+44">+44</option>
+                          <option value="+91">+91</option>
                         </select>
                         <Input
                           type="tel"
-                          name="phoneNumber"
+                          name="phoneNumber" // Make sure this matches your EmailJS template
                           value={formData.phoneNumber}
                           onChange={handleInputChange}
                           placeholder="1012 3456 789"
@@ -345,11 +513,16 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* Subject Selection */}
+                  {/* Subject Selection - Update to use hidden input */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-4">
                       Select Subject?
                     </label>
+                    <input
+                      type="hidden"
+                      name="subject"
+                      value={formData.subject}
+                    />
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {[
                         "General Inquiry",
@@ -363,7 +536,7 @@ export default function Contact() {
                         >
                           <input
                             type="radio"
-                            name="subject"
+                            name="subjectRadio"
                             value={subject}
                             checked={formData.subject === subject}
                             onChange={() => handleSubjectChange(subject)}
@@ -383,7 +556,7 @@ export default function Contact() {
                       Message
                     </label>
                     <Textarea
-                      name="message"
+                      name="message" // Make sure this matches your EmailJS template
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Write your message.."
@@ -397,9 +570,10 @@ export default function Contact() {
                   <div className="flex justify-end pt-6">
                     <Button
                       type="submit"
-                      className="bg-[#0F2FA3] hover:bg-[#0080FF] text-white px-8 py-3 rounded-lg button-hover"
+                      disabled={isSubmitting}
+                      className="bg-[#0F2FA3] hover:bg-[#0080FF] text-white px-8 py-3 rounded-lg button-hover disabled:opacity-50"
                     >
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </div>
                 </form>

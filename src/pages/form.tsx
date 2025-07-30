@@ -19,10 +19,10 @@ import {
   //   Shield,
   //   Users,
   AlertCircle,
-  //   Check,
+  Check,
 } from "lucide-react";
 import Logo from "../assets/images/safeguardmedia-5.png";
-// import { useDemoRequestMutation } from "../../services/apiService";
+import { useDemoRequestMutation } from "../../services/apiService";
 import { useNavigate } from "react-router-dom";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";
 
@@ -53,8 +53,8 @@ export default function Form() {
 
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  //   const [isSubmitted, setIsSubmitted] = useState(false);
-  //   const [demoRequest] = useDemoRequestMutation();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [demoRequest] = useDemoRequestMutation();
 
   // Validation functions
   interface ValidateBusinessEmailResult {
@@ -128,6 +128,7 @@ export default function Form() {
 
     setIsSubmitting(true);
     setErrors({});
+    console.log(formData, 5000);
 
     try {
       // Map form data to API expected format
@@ -150,24 +151,24 @@ export default function Form() {
       console.log("Submitting to API:", apiPayload);
 
       // Call the API
-      //   const response = await demoRequest(apiPayload).unwrap();
+      const response = await demoRequest(apiPayload).unwrap();
 
-      //   console.log("API Response:", response);
+      console.log("API Response:", response);
 
-      //   if (response.success) {
-      //     // Reset form after successful submission
+      if (response.success) {
+        // Reset form after successful submission
 
-      //     setIsSubmitted(true);
+        setIsSubmitted(true);
 
-      //     // Hide success message after 5 seconds
-      //     setTimeout(() => {
-      //       setIsSubmitted(false);
-      //     }, 5000);
-      //   } else {
-      //     setErrors({
-      //       submit: response.message || "Failed to submit demo request",
-      //     });
-      //   }
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        setErrors({
+          submit: response.message || "Failed to submit demo request",
+        });
+      }
     } catch (error) {
       console.error("Submission error:", error);
 
@@ -211,19 +212,17 @@ export default function Form() {
     </div>
   );
 
-  //   const SuccessMessage = () => (
-  //     <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-  //       <div className="flex items-center space-x-2 text-green-800">
-  //         <Check className="w-5 h-5" />
-  //         <span className="font-medium">
-  //           Demo request submitted successfully!
-  //         </span>
-  //       </div>
-  //       <p className="text-green-700 text-sm mt-2">
-  //         We'll contact you within 24 hours to schedule your personalized demo.
-  //       </p>
-  //     </div>
-  //   );
+  const SuccessMessage = () => (
+    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+      <div className="flex items-center space-x-2 text-green-800">
+        <Check className="w-5 h-5" />
+        <span className="font-medium">Request submitted successfully!</span>
+      </div>
+      <p className="text-green-700 text-sm mt-2">
+        Check your mail to get started.
+      </p>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -432,7 +431,7 @@ export default function Form() {
                     <p className="text-gray-600">Get instant access</p>
                   </div>
 
-                  {/* {isSubmitted && <SuccessMessage />} */}
+                  {isSubmitted && <SuccessMessage />}
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* First Name and Last Name */}
@@ -536,26 +535,26 @@ export default function Form() {
                           <SelectValue placeholder="Select your role" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="content-creator">
+                          <SelectItem value="Content Creator/Influencer">
                             Content Creator/Influencer
                           </SelectItem>
-                          <SelectItem value="journalist">
+                          <SelectItem value="Journalist/Reporter">
                             Journalist/Reporter
                           </SelectItem>
-                          <SelectItem value="educator">
+                          <SelectItem value="Educator/Teacher">
                             Educator/Teacher
                           </SelectItem>
-                          <SelectItem value="researcher">
+                          <SelectItem value="Researcher/Academic">
                             Researcher/Academic
                           </SelectItem>
-                          <SelectItem value="freelancer">
+                          <SelectItem value="Freelancer/Consultant">
                             Freelancer/Consultant
                           </SelectItem>
-                          <SelectItem value="student">Student</SelectItem>
-                          <SelectItem value="individual">
+                          <SelectItem value="Student">Student</SelectItem>
+                          <SelectItem value="Individual User">
                             Individual User
                           </SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          <SelectItem value="Other">Other</SelectItem>
                         </SelectContent>
                       </Select>
                       {errors.profession && (
@@ -585,25 +584,25 @@ export default function Form() {
                           <SelectValue placeholder="What do you want to achieve?" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="verify-content">
+                          <SelectItem value="Verify content I receive">
                             Verify content I receive
                           </SelectItem>
-                          <SelectItem value="protect-brand">
+                          <SelectItem value="Protect my personal brand">
                             Protect my personal brand
                           </SelectItem>
-                          <SelectItem value="fact-checking">
+                          <SelectItem value="Fact-checking and research">
                             Fact-checking and research
                           </SelectItem>
-                          <SelectItem value="education">
+                          <SelectItem value="Teaching/learning about deepfakes">
                             Teaching/learning about deepfakes
                           </SelectItem>
-                          <SelectItem value="detect-manipulation">
+                          <SelectItem value="Detect manipulated media">
                             Detect manipulated media
                           </SelectItem>
-                          <SelectItem value="general-security">
+                          <SelectItem value="General digital security">
                             General digital security
                           </SelectItem>
-                          <SelectItem value="curiosity">
+                          <SelectItem value="Just curious about the technology">
                             Just curious about the technology
                           </SelectItem>
                         </SelectContent>
@@ -631,19 +630,23 @@ export default function Form() {
                           <SelectValue placeholder="Select content type" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="videos">Videos</SelectItem>
-                          <SelectItem value="images">Images/Photos</SelectItem>
-                          <SelectItem value="audio">Audio content</SelectItem>
-                          <SelectItem value="social-media">
+                          <SelectItem value="Videos">Videos</SelectItem>
+                          <SelectItem value="Images/Photos">
+                            Images/Photos
+                          </SelectItem>
+                          <SelectItem value="Audio content">
+                            Audio content
+                          </SelectItem>
+                          <SelectItem value="Social media posts">
                             Social media posts
                           </SelectItem>
-                          <SelectItem value="news-articles">
+                          <SelectItem value="News articles">
                             News articles
                           </SelectItem>
-                          <SelectItem value="user-generated">
+                          <SelectItem value="User-generated content">
                             User-generated content
                           </SelectItem>
-                          <SelectItem value="mixed">
+                          <SelectItem value="Mixed content types">
                             Mixed content types
                           </SelectItem>
                         </SelectContent>
@@ -668,19 +671,19 @@ export default function Form() {
                           <SelectValue placeholder="Select urgency level" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="immediate">
+                          <SelectItem value="Need help right now">
                             Need help right now
                           </SelectItem>
-                          <SelectItem value="this-week">
+                          <SelectItem value="Within this week">
                             Within this week
                           </SelectItem>
-                          <SelectItem value="this-month">
+                          <SelectItem value="Within this month">
                             Within this month
                           </SelectItem>
-                          <SelectItem value="planning">
+                          <SelectItem value="Planning for the future">
                             Planning for the future
                           </SelectItem>
-                          <SelectItem value="exploring">
+                          <SelectItem value="Just exploring options">
                             Just exploring options
                           </SelectItem>
                         </SelectContent>

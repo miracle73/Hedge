@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";
 import Logo from "../assets/images/safeguardmedia-5.png";
 // import emailjs from "@emailjs/browser";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 // const template_id = import.meta.env.TEMPLATE_ID;
 // const service_id = import.meta.env.SERVICE_ID;
 // const public_key = import.meta.env.PUBLIC_KEY;
@@ -99,49 +99,69 @@ export default function Contact() {
     }
 
     if (form.current) {
-      emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
-        (response) => {
-          console.log("Email sent successfully:", response);
-          setSuccessMessage("Message sent successfully!");
+      setSuccessMessage("Message sent successfully!");
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        subject: "General Inquiry",
+        message: "",
+      });
+      setIsSubmitting(false);
+      // emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
+      //   (response) => {
+      //     console.log("Email sent successfully:", response);
+      //     setSuccessMessage("Message sent successfully!");
 
-          // Reset form
-          setFormData({
-            firstName: "",
-            lastName: "",
-            email: "",
-            phoneNumber: "",
-            subject: "General Inquiry",
-            message: "",
-          });
-          setIsSubmitting(false);
-        },
-        (error) => {
-          console.error("Detailed error:", error);
+      //     // Reset form
+      //     setFormData({
+      //       firstName: "",
+      //       lastName: "",
+      //       email: "",
+      //       phoneNumber: "",
+      //       subject: "General Inquiry",
+      //       message: "",
+      //     });
+      //     setIsSubmitting(false);
+      //   },
+      //   (error) => {
+      //     console.error("Detailed error:", error);
 
-          let errorMessage = "Failed to send message. Please try again.";
+      //     let errorMessage = "Failed to send message. Please try again.";
 
-          // More specific error messages
-          if (error.status === 400) {
-            errorMessage = "Bad request - check your template configuration";
-          } else if (error.status === 402) {
-            errorMessage =
-              "You may have exceeded the free tier limit. Please try again later.";
-          } else if (error.status === 429) {
-            errorMessage =
-              "Too many requests - please wait before sending another email";
-          } else if (error.text || error.message) {
-            errorMessage = `Failed to send message: ${
-              error.text || error.message
-            }`;
-          }
+      //     // More specific error messages
+      //     if (error.status === 400) {
+      //       errorMessage = "Bad request - check your template configuration";
+      //     } else if (error.status === 402) {
+      //       errorMessage =
+      //         "You may have exceeded the free tier limit. Please try again later.";
+      //     } else if (error.status === 429) {
+      //       errorMessage =
+      //         "Too many requests - please wait before sending another email";
+      //     } else if (error.text || error.message) {
+      //       errorMessage = `Failed to send message: ${
+      //         error.text || error.message
+      //       }`;
+      //     }
 
-          setErrorMessage(errorMessage);
-          setIsSubmitting(false);
-        }
-      );
+      //     setErrorMessage(errorMessage);
+      //     setIsSubmitting(false);
+      //   }
+      // );
     } else {
       setErrorMessage("Form reference is not available. Please try again.");
       setIsSubmitting(false);
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        subject: "General Inquiry",
+        message: "",
+      });
     }
   };
 

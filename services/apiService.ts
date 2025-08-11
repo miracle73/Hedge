@@ -29,15 +29,11 @@ interface BusinessIntegrationResponse {
   data: BusinessIntegrationData;
 }
 
-// New interfaces for demo request
 interface DemoRequest {
   firstName: string;
   lastName: string;
   email: string;
   role: string;
-  goal: string;
-  contentType: string;
-  urgencyLevel: string;
   metadata: string;
 }
 
@@ -46,11 +42,11 @@ interface DemoRequestData {
   lastName: string;
   email: string;
   role: string;
-  goal: string;
-  contentType: string;
-  urgencyLevel: string;
-  metadata: string;
-  demoMailSent: boolean;
+  goal?: string;
+  contentType?: string;
+  urgencyLevel?: string;
+  metadata?: string;
+  demoMailSent?: boolean;
   _id: string;
   createdAt: string;
   updatedAt: string;
@@ -71,16 +67,7 @@ export const apiService = createApi({
   }),
   endpoints: (builder) => ({
     demoRequest: builder.mutation<DemoRequestResponse, DemoRequest>({
-      query: ({
-        firstName,
-        lastName,
-        email,
-        role,
-        goal,
-        contentType,
-        urgencyLevel,
-        metadata,
-      }) => ({
+      query: ({ firstName, lastName, email, role, metadata }) => ({
         url: "demo-request",
         method: "POST",
         body: {
@@ -88,9 +75,6 @@ export const apiService = createApi({
           lastName,
           email,
           role,
-          goal,
-          contentType,
-          urgencyLevel,
           metadata,
         },
       }),

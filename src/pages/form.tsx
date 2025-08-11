@@ -4,7 +4,7 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { Textarea } from "../components/ui/textarea";
+// import { Textarea } from "../components/ui/textarea";
 import { Checkbox } from "../components/ui/checkbox";
 import {
   Select,
@@ -22,7 +22,7 @@ import {
   Check,
 } from "lucide-react";
 import Logo from "../assets/images/safeguardmedia-5.png";
-import { useDemoRequestMutation } from "../../services/apiService";
+// import { useDemoRequestMutation } from "../../services/apiService";
 import { useNavigate } from "react-router-dom";
 import SecondLogo from "../assets/images/SafeguardMedia8.svg";
 
@@ -33,10 +33,6 @@ export default function Form() {
     lastName: "",
     email: "",
     profession: "",
-    primaryUseCase: "",
-    contentType: "",
-    urgency: "",
-    specificQuestion: "",
     agreeToComms: false,
   });
 
@@ -54,7 +50,7 @@ export default function Form() {
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [demoRequest] = useDemoRequestMutation();
+  // const [demoRequest] = useDemoRequestMutation();
 
   // Validation functions
   interface ValidateBusinessEmailResult {
@@ -107,13 +103,13 @@ export default function Form() {
     if (!formData.profession) {
       newErrors.profession = "Please select your role";
     }
-    if (!formData.primaryUseCase) {
-      newErrors.primaryUseCase = "Please select your main goal";
-    }
+    // if (!formData.primaryUseCase) {
+    //   newErrors.primaryUseCase = "Please select your main goal";
+    // }
 
-    if (!formData.agreeToComms) {
-      newErrors.agreeToComms = "Please agree to receive communications";
-    }
+    // if (!formData.agreeToComms) {
+    //   newErrors.agreeToComms = "Please agree to receive communications";
+    // }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -137,11 +133,11 @@ export default function Form() {
         lastName: formData.lastName,
         email: formData.email,
         role: formData.profession,
-        goal: formData.primaryUseCase,
-        contentType: formData.contentType,
-        urgencyLevel: formData.urgency,
+        // goal: formData.primaryUseCase,
+        // contentType: formData.contentType,
+        // urgencyLevel: formData.urgency,
         metadata: JSON.stringify({
-          specificQuestion: formData.specificQuestion,
+          // specificQuestion: formData.specificQuestion,
           agreeToComms: formData.agreeToComms,
           source: "demo-request-form",
           submittedAt: new Date().toISOString(),
@@ -150,25 +146,26 @@ export default function Form() {
 
       console.log("Submitting to API:", apiPayload);
 
+      setIsSubmitted(true);
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 5000);
+
       // Call the API
-      const response = await demoRequest(apiPayload).unwrap();
+      // const response = await demoRequest(apiPayload).unwrap();
 
-      console.log("API Response:", response);
+      // console.log("API Response:", response);
 
-      if (response.success) {
-        // Reset form after successful submission
+      // if (response.success) {
+      //   // Reset form after successful submission
 
-        setIsSubmitted(true);
-
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 5000);
-      } else {
-        setErrors({
-          submit: response.message || "Failed to submit demo request",
-        });
-      }
+      // } else {
+      //   setErrors({
+      //     submit: response.message || "Failed to submit demo request",
+      //   });
+      // }
     } catch (error) {
       console.error("Submission error:", error);
 
@@ -196,10 +193,6 @@ export default function Form() {
         lastName: "",
         email: "",
         profession: "",
-        primaryUseCase: "",
-        contentType: "",
-        urgency: "",
-        specificQuestion: "",
         agreeToComms: false,
       });
     }
@@ -563,7 +556,7 @@ export default function Form() {
                     </div>
 
                     {/* Primary Use Case */}
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <Label
                         htmlFor="primaryUseCase"
                         className="text-[#080808] font-[Lufga] font-medium"
@@ -610,10 +603,10 @@ export default function Form() {
                       {errors.primaryUseCase && (
                         <ErrorMessage message={errors.primaryUseCase} />
                       )}
-                    </div>
+                    </div> */}
 
                     {/* Content Type */}
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <Label
                         htmlFor="contentType"
                         className="text-[#080808] font-[Lufga] font-medium"
@@ -651,10 +644,10 @@ export default function Form() {
                           </SelectItem>
                         </SelectContent>
                       </Select>
-                    </div>
+                    </div> */}
 
                     {/* Urgency */}
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <Label
                         htmlFor="urgency"
                         className="text-[#080808] font-[Lufga] font-medium"
@@ -688,10 +681,10 @@ export default function Form() {
                           </SelectItem>
                         </SelectContent>
                       </Select>
-                    </div>
+                    </div> */}
 
                     {/* Specific Question */}
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <Label
                         htmlFor="specificQuestion"
                         className="text-[#080808] font-[Lufga] font-medium"
@@ -708,7 +701,7 @@ export default function Form() {
                         className="border-gray-300 focus:border-[#250DAD] focus:ring-[#250DAD] min-h-[80px] resize-none"
                         rows={3}
                       />
-                    </div>
+                    </div> */}
 
                     {/* Agreement Checkbox */}
                     <div className="space-y-2">

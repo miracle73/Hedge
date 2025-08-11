@@ -594,7 +594,7 @@ export default function About() {
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
               Whether you're a newsroom editor, policy analyst, fact-checker, or
               concerned citizen, SafeguardMedia helps you verify content at the
-              speed of the internet. No uploads. No guesswork. Just actionable
+              speed of the internet.  No guesswork. Just actionable
               insight.
             </p>
           </div>

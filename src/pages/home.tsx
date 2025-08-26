@@ -233,7 +233,7 @@ export default function Home() {
             </div>
 
             {/* Headline */}
-            <AnimatedSection delay={400} index={1}>
+            <AnimatedSection index={1}>
               <div className="flex justify-center items-center">
                 <img
                   src={SecondLogo}
@@ -247,7 +247,7 @@ export default function Home() {
             </AnimatedSection>
 
             {/* Subtitle */}
-            <AnimatedSection delay={600} index={2}>
+            <AnimatedSection index={2}>
               <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
                 A unified platform for detecting AI-generated and manipulated
                 media in real-time. Powered by cutting-edge AI technology.
@@ -255,7 +255,7 @@ export default function Home() {
             </AnimatedSection>
 
             {/* CTA Buttons */}
-            <AnimatedSection delay={800} index={3}>
+            <AnimatedSection index={3}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                 <Button
                   size="lg"
@@ -279,7 +279,7 @@ export default function Home() {
           </div>
 
           {/* Hero Image */}
-          <AnimatedSection delay={1000} index={4}>
+          <AnimatedSection index={4}>
             <div className="mb-8 lg:-mb-8 flex justify-center items-center">
               <div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
                 <img
@@ -387,7 +387,7 @@ export default function Home() {
                   delay: 140,
                 },
               ].map((capability, index) => (
-                <AnimatedSection delay={capability.delay} index={7} key={index}>
+                <AnimatedSection index={7} key={index}>
                   <div className="bg-white/95 backdrop-blur-sm p-6 lg:p-8 rounded-2xl text-center card-hover group h-full flex flex-col justify-between">
                     <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-3">
                       {capability.title}

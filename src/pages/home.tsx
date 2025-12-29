@@ -279,7 +279,7 @@ export default function Home() {
           </div>
 
           {/* Hero Image */}
-          <AnimatedSection index={4}>
+          <div>
             <div className="mb-8 lg:-mb-8 flex justify-center items-center">
               <div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
                 <img
@@ -290,7 +290,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
             </div>
-          </AnimatedSection>
+          </div>
 
           {/* Bottom Content Sections */}
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8 relative z-10">
@@ -387,7 +387,7 @@ export default function Home() {
                   delay: 140,
                 },
               ].map((capability, index) => (
-                <AnimatedSection index={7} key={index}>
+                <AnimatedSection index={4} key={index}>
                   <div className="bg-white/95 backdrop-blur-sm p-6 lg:p-8 rounded-2xl text-center card-hover group h-full flex flex-col justify-between">
                     <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-3">
                       {capability.title}
@@ -430,20 +430,19 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 animate-gradient"></div>
               <div className="relative z-10">
                 <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-                  Verify What You See. As You See It.
+                  Stay Ahead of Digital Deception
                 </h3>
                 <p className="text-gray-200 mb-6 max-w-2xl mx-auto text-lg">
-                  Coming soon: A browser extension that flags manipulated media
-                  in real-time while you browse online content. Stay informed
-                  without leaving the page.
+                  Get the latest insights on AI detection, media verification,
+                  and digital forensics.
                 </p>
                 <Button
                   className="bg-blue-600 hover:bg-blue-700 text-white button-hover text-lg px-8 py-4"
                   onClick={() => {
-                    navigate("/get-started");
+                    navigate("/blog");
                   }}
                 >
-                  Sign Up for Beta Access
+                  Explore Our Blog
                 </Button>
               </div>
             </div>

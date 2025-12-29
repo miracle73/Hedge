@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Technology from "./pages/technology";
 import Contact from "./pages/contact";
 import Form from "./pages/form";
+import ResourcesPage from "./pages/blogIndex";
+import BlogPostPage from "./pages/blogPost";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/technology" element={<Technology />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/get-started" element={<Form />} />
+          <Route path="/blog" element={<ResourcesPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
         </Routes>
       </Router>
     </>
